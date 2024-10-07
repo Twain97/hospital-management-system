@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('./partials/head.ejs') %>
+<body>
+    <%- include('./partials/nav.ejs') %>
+    <div class="bg-blue-600 w-full h-fit">
+        <img src="/bg-picture.jpg" alt="" class="w-full h-ht7">
+        <div class="flex justify-center  space-x-3">
+            <div class="my-2 p-4 border-red-500 cursor-pointer  rounded-lg bg-slate-100">
+                <a href='/loginPatient' class="flex">
+                    <div class="my-auto mr-2">
+                        <i class="fas fa-hospital-user fa-3x text-blue-700"></i>
+                    </div>
+                    <div class="flex flex-col   border-green w-fit">
+                        <p class="text-blue-500 text-xl">Patients</p>
+                        <p class="text-sm text-blue-500">Register & book appointments</p>
+                        <p class="text-slate-600 text-sm">Click here.</p>
+                    </div>
+                </a>
+            </div>
+
+            <div class=" my-2 p-4 border-red-500  cursor-pointer rounded-lg bg-slate-100">
+                <a href="/loginDoctor" class="flex">
+                    <div class="my-auto mr-2">
+                        <i class="fas fa-stethoscope fa-3x text-blue-700"></i>
+                    </div>
+                    <div class="flex flex-col border-green my-auto">
+                        <p class="text-blue-500 text-xl">Doctors Login</p>
+                        <p class="text-slate-600 text-sm">Click here.</p>
+                    </div>
+                </a>
+            </div>
+
+            <div class="my-2 p-4 border-red-500 cursor-pointer  rounded-lg bg-slate-100">                
+                <a href="/loginAdmin" class="flex">
+                    <div class="my-auto mr-2">
+                        <i class="fas fa-user-tie fa-3x text-blue-700"></i>
+                    </div>
+                    <div class="flex flex-col border-green my-auto">
+                        <p class="text-blue-500 text-xl">Admin Login</p>
+                        <p class="text-slate-600 text-sm">Click here.</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <%- include('./partials/footer.ejs') %>
+</body>
+</html>

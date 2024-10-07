@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('./partials/head.ejs') %>
+<body>
+    <%- include('./partials/nav.ejs') %>
+    <div class="flex flex-col h-fit rounded-xl my-5 py-10  mx-auto pb-2 w-fit md:w-wd7 lg:w-wd8 xl:w-wd45 bg-slate-100 shadow-sm">
+             
+        <div class="flex z-50 my-auto  md:py-2 w-full h-full border-blue-500">
+        <div class="w-full h-full py-2 flex flex-col px-2 border-red-500 mx-auto space-y-10">
+            <div class="w-full   space-y-2 flex flex-col ">
+            <h2 class="text-slate-800 mx-auto font-bold text-lg md:text-2xl uppercase">My Appointments.</h2>
+            <% if (user && appointments) { %>
+            <table class="">
+                <tr class="border-black rounded-t-xl border-2 md:border-4 font-bold text-center text-sm md:text-lg uppercase">
+                    <% if (appointments.length > 0 ) { %>
+                    <td>#</td>
+                    <td>Doctor Name</td>
+                    <td>Specialization</td>
+                    <td>Appointment Date</td>
+                    <td>Appointment Time</td>
+                    <td>Appointment Creation Date</td>
+                    <td>Appointment Status</td>
+                </tr>
+
+                    <% var index = 1 %>
+                    <% appointments.forEach(appointment => { %>
+                        
+                        <% var createdAt = new Date(appointment.createdAt) %>
+                        <% var createdDate = createdAt.toLocaleDateString('en-US') %>
+                        
+                        <% if (user.name === appointment.name) { %>
+                           <tr>
+                               <td class="border-black border-2 md:border-4 w-fit uppercase py-2"><%= index %></td>
+                               <td class="border-black border-2 md:border-4 w-fit uppercase py-2"><%= appointment.selectDoctor %></td>
+                               <td class="border-black border-2 md:border-4 w-fit uppercase py-2"><%= appointment.doctorSpecialties%></td>
+                               <td class="border-black border-2 md:border-4 w-fit uppercase py-2"><%= appointment.Date %></td>
+                               <td class="border-black border-2 md:border-4 w-fit uppercase py-2"><%= appointment.Time %></td>
+                               <td class="border-black border-2 md:border-4 w-fit uppercase py-2"><%= createdDate %></td>
+                               <td class="border-black border-2 md:border-4 w-fit uppercase py-2"><%= appointment.status %></td></td>
+                           </tr>
+                         
+                           <% index++; %>
+                        <% } %>
+                       <% }) %>
+                <% } else{ %>
+                    <p>no doctor</p>
+                <% } %>
+               
+            </table>
+            <% } %>
+            </div>
+        </div>
+    </div>
+</div>
+   
+
+    <%- include('./partials/footer.ejs') %>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<nav class="">
+    <ul>
+        <li class="flex justify-around bg-slate-100">
+            <% if (!user) { %>
+                <h1 class="my-auto font-bold text-blue-800 text-lg md:text-xl">Health Care Management System</h1>
+                <div class=" flex" >
+                    <a href="/" class="bg-blue-500 hover:bg-blue-800 text-white p-4 m-0"> HOME</a>
+                    <a href="/about" class="bg-blue-500 hover:bg-blue-800 text-white p-4 "> ABOUT US</a>
+                    <!-- <a href="/logout" class="bg-blue-500 hover:bg-blue-800 text-white p-4 m-0"> LOGOUT</a> -->
+                </div>
+                
+            <% }else{ %>
+                <h1 class="my-auto font-bold text-blue-800 text-lg md:text-xl">Welcome, <%= user.name %></h1>
+                <% if (user.role === 'doctor') { %>
+                <div class=" flex" >
+                    <a href="/doctors" class="bg-blue-500 hover:bg-blue-800 text-white p-4 "> HOME</a>
+                    <a href="/about" class="bg-blue-500 hover:bg-blue-800 text-white p-4 "> ABOUT US</a>
+                    <a href="/logout" class="bg-blue-500 hover:bg-blue-800 text-white p-4 "> LOGOUT</a>
+                </div>
+                <% } else if (user.role === 'patient') { %>
+                <div class=" flex" >
+                    <a href="/patients" class="bg-blue-500 hover:bg-blue-800 text-white p-4 m-0"> HOME</a>
+                    <a href="/about" class="bg-blue-500 hover:bg-blue-800 text-white p-4 "> ABOUT US</a>
+                    <a href="/logout" class="bg-blue-500 hover:bg-blue-800 text-white p-4 m-0"> LOGOUT</a>
+                </div>
+                <% } else if (user.role === 'admin') { %>
+                <div class=" flex" >
+                   
+                    <a href="/logout" class="bg-blue-500 hover:bg-blue-800 text-white p-4 m-0"> LOGOUT</a>
+                </div>
+                    <% } %>    
+                <% } %>
+
+                
+        </li>
+        
+    </ul>
+</nav>

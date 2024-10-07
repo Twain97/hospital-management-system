@@ -1,4 +1,5 @@
 {
+  "homepage": "https://twain97.github.io/hospital-management-system",
   "name": "hospital.node.js.express.mongo",
   "version": "1.0.0",
   "description": "nodejs.Express.MongoDbProject",
@@ -7,14 +8,29 @@
     "test": "tests"
   },
   "scripts": {
+    "build:css": "postcss public/styles/tailwind.css -o public/styles/styles.css --watch",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon app.js"
+    "start": "nodemon app.js",
+    "build": "npm run build-app",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
-  "author": "MayarAmein",
+  "author": "Akinpelumi Taiwo",
   "license": "ISC",
   "dependencies": {
+    "autoprefixer": "^10.4.20",
+    "bcrypt": "^5.1.1",
+    "cookie-parser": "^1.4.6",
+    "ejs": "^3.1.10",
     "express": "^4.18.2",
-    "mongoose": "^7.2.2"
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^7.2.2",
+    "morgan": "^1.10.0",
+    "npm": "^8.11.0",
+    "postcss": "^8.4.47",
+    "postcss-cli": "^11.0.0",
+    "tailwindcss": "^3.4.13",
+    "validator": "^13.12.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.22"

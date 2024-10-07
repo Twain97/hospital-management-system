@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('./partials/head.ejs') %>
+<body>
+    <%- include('./partials/nav.ejs') %>
+    <div class=" border-red-500 w-full h-ht7 my-10 flex">
+        <div class="flex justify-around w-full h-fit my-auto ">
+
+            <div class="my-2 p-4 border-red-500  cursor-pointer rounded-lg bg-slate-100">
+                <a href='/profile' class="flex flex-col">
+                    <div class="mx-auto">
+                        <i class="fas fa-user fa-2x text-blue-700"></i>
+                    </div>
+                    <div class="flex flex-col   border-green w-fit">
+                        <p class="text-blue-500 text-xl">My Profile.</p>
+                        <p class="text-sm text-blue-500">View your profile</p>
+                        <p class="text-slate-600 text-sm text-center">Click here.</p>
+                    </div>
+                </a>
+            </div>
+
+            <div class="my-2 p-4 border-red-500  cursor-pointer rounded-lg bg-slate-100">
+                <a href='/doctorAppointment' class="flex flex-col">
+                    <div class="mx-auto">
+                        <i class="fas fa-clipboard-list fa-2x text-blue-700"></i>
+                    </div>
+                    <div class="flex flex-col   border-green w-fit">
+                        <p class="text-blue-500 text-xl">My Appointments.</p>
+                        <p class="text-sm text-blue-500">View Appointment History</p>
+                        <p class="text-slate-600 text-sm text-center">Click here.</p>
+                    </div>
+                </a>
+            </div>
+
+            
+        </div>
+
+    </div>
+    
+
+    <%- include('./partials/footer.ejs') %>
+</body>
+</html>

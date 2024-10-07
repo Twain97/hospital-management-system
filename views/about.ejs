@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('./partials/head.ejs') %>
+<body>
+    <%- include('./partials/nav.ejs') %>
+    <div class="w-full h-fit  border-green-500 flex">
+        <div class="md:w-2/4 bg-slate-200 px-4 py-5 border-red-300 my-5 mx-auto rounded-lg shadow-lg">
+            <div class="text-xl flex space-x-1">
+                <img src="/logo.png" alt="" class="w-8">
+                <h1> HMS.</h1>
+            </div>
+            <div class="text-sm flex flex-col space-y-6">
+                <p><span class="font-bold text-lg">W</span> elcome to our Hospital Management System (HMS)! We are dedicated to providing efficient and reliable healthcare solutions for our patients and staff.</p>
+
+                <h2 class="font-bold">Our Mission</h2>
+                <p>To deliver high-quality, patient-centered care through innovative technology and a compassionate approach.</p>
+
+                <h2 class="font-bold">Our Vision</h2>
+                <p>To be a leading provider of healthcare services, recognized for our commitment to excellence, innovation, and community well-being.</p>
+
+                <h2 class="font-bold">Our Values</h2>
+                <ul class="list-disc list-inside">
+                    <li>Patient Focus: We prioritize the needs of our patients, ensuring their comfort and well-being.</li>
+                    <li>Integrity: We uphold the highest ethical standards in all our interactions.</li>
+                    <li>Teamwork: We foster a collaborative environment where everyone feels valued and respected.</li>
+                    <li>Innovation: We embrace new technologies and approaches to continuously improve our services.</li>
+                </ul>
+
+                <% if (user) { %>
+                    <% if (user.role == 'patient') { %>
+                        <div class="justify-self-end w-fit border-red-500 bg-blue-700 px-2 py-1 rounded-md shadow-lg">
+                            <a href="/patients" class="text-white">Go Back</a>
+                        </div>
+                    <% } else if (user.role == 'doctor') { %>
+                        <div class="justify-self-end w-fit border-red-500 bg-blue-700 px-2 py-1 rounded-md shadow-lg">
+                            <a href="/doctors" class="text-white">Go Back</a>
+                        </div>
+                    <% }else{ %>
+                        <div class="justify-self-end w-fit border-red-500 bg-blue-700 px-2 py-1 rounded-md shadow-lg">
+                            <a href="/" class="text-white">Go Back</a>
+                        </div>
+                    <% } %>
+                     
+                <% } else if (!user) { %>
+                    <div class="justify-self-end w-fit border-red-500 bg-blue-700 px-2 py-1 rounded-md shadow-lg">
+                        <a href="/" class="text-white">Go Back</a>
+                    </div>
+                <% } %>
+
+                 
+                
+            </div>
+        </div>
+    </div>
+
+
+    <%- include('./partials/footer.ejs') %>
+</body>
+</html>

@@ -3,7 +3,10 @@
 // Controller method for the about page
 exports.getAboutPage = (req, res) => {
   // Logic to fetch any necessary data or render the appropriate view
-  res.render('about/aboutPage');
+  res.render('about', {
+    title: 'About',
+    user: res.locals.user
+  });
 };
 
 // Controller method for fetching hospital history

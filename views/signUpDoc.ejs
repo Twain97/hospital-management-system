@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('./partials/head.ejs') %>
+<body>
+    <%- include('./partials/nav.ejs') %>
+    <div class="w-full h-fit  border-green-500 flex">
+        <div class="md:w-2/4 bg-slate-200 px-4 py-5 border-red-300 my-5 mx-auto rounded-lg shadow-lg">
+            <div class="text-xl flex space-x-1">
+                <img src="/logo.png" alt="" class="w-8">
+                <h1> HMS | Doctor Signup.</h1>
+            </div>
+            <div class="">
+                <fieldset class="border border-slate-500 p-5 rounded-lg">
+                    <legend class="ml-2 text-blue-500 font-semibold">Create your account.</legend>
+                    <form action="/signUpPatient" method="post">
+                        <p class="mb-2 text-sm">Please enter your details to create account.</p>
+                    
+                        <div class=" border-red-500 my-1 p-2 w-full bg-white rounded-t-md flex">
+                            <label for="name">Full Name:</label>
+                            <input type="text" name="name" id="name" required class="rounded-lg w-3/4 h-8 mx-auto border">
+                            <div class="name error"></div>
+                        </div>
+
+                        <div class=" border-red-500 my-1 p-2 bg-white flex">
+                            <label for="mail">Email:</label>
+                            <input type="email" name="email" id="email" required class="rounded-lg w-3/4 h-8 mx-auto border">
+                            <div class="email error"></div>
+                        </div>
+
+                        <div class=" border-red-500 my-1 p-2 bg-white flex">
+                            <label for="password">Password</label>
+                            <input type="password" name="password" id="password" required class="rounded-lg w-3/4 h-8 mx-auto border">
+                            <div class="password error"></div>
+                        </div>
+
+                        <div class="border-red-500 p-2 bg-white flex">
+                            <label for="confirmPassword">Confirm Password</label>
+                            <input type="password" name="confirmPassword" id="confirmPassword" required class="w-3/4 h-8 mx-auto rounded-lg border">
+                            <div class="password error"></div>
+                        </div>
+
+                        <div class="hidden border-red-500 my-1 p-2 bg-white">
+                            <label for="role">Role:</label>
+                            <input type="text" name="role" id="role" disabled class="rounded-lg w-3/4 h-8 mx-auto border">
+                            <div class="role error"></div>
+                        </div>
+
+                        <div class=" border-red-500 my-1 p-2 bg-white flex">
+                            <label for="specialties">Specialty:</label>
+                            <select name="specialties" id="specialties" required class="rounded-lg w-3/4 h-8 mx-auto border">
+                                <option value="null">-------------------</option>
+                                <option value="General Surgeon"> General Surgeon</option>
+                                <option value="Urologists">Urologist</option>
+                                <option value="Sports Medicine Specialists">Sport Medicine Specialists</option>
+                                <option value="Sleep Medicine Specialists"> Sleep Medicine Specialists</option>
+                                <option value="Rheumatologists"> Rheumatologists</option>
+                                <option value="Pulmonologists">Pulmonologists</option>
+                                <option value="Psychiatrists">Psychiatrists</option>
+                                <option value="Preventive Medicine Specialists">Preventive Medicine Specialists</option>
+                                <option value="Podiatrists">Podiatrists</option>
+                                <option value="Plastic Surgeons">Plastic Surgeons</option>
+                                <option value="Orthopedists">Orthopedists</option>
+                                <option value="Neurosurgeons">Neurosurgeons</option>
+                                <option value="Otolaryngologists">Otolaryngologists</option>
+                                <option value="Oncologists">Oncologists</option>
+                                <option value="Pathologists">Pathologist</option>
+                                <option value="Ophthalmologists">Ophthalmologists</option>
+                                <option value="Nephrologists">Nephrologists</option>
+                                <option value="Osteopaths">Osteopaths</option>
+                                <option value="Anesthesiologists">Anesthesiologists</option>
+                                <option value="Allergists/Immunologists">Allergists/Immunologist</option>
+                                <option value="Internal Medicine Specialists">Internal Medicine Specialists</option>
+                                <option value="Colon and Rectal Surgeons">Colon and Rectal Surgeons</option>
+                                <option value="Critical Care Medicine Specialists">Critical Care Medicine Specialists"></option>
+                                <option value="Dermatologists">Dermatologists</option>
+                                <option value="Gastroenterologists">Gastroenterologists</option>
+                                <option value="Family Physicians">Family Physicians</option>
+                                <option value="Obstetricians and Gynecologists">Obstetricians and Gynecologists"></option>
+                            </select>
+                            <div class="specialties error"></div>
+                        </div>
+
+                        <div class=" border-red-500 my-1 p-2 bg-white flex">
+                            <label for="role">Qualification:</label>
+                            <select name="qualifications" id="qualifications" class="rounded-lg w-3/4 h-8 mx-auto border">
+                                <option value="null">--------------------------</option>
+                                <option value="GS">General Surgeon (GS)</option>
+                                <option value="BS">Bachelor of Science (BS)</option>
+                                <option value="MS">Master of Science (MS)</option>
+                                <option value="PhD">Doctor of Philosophy (PhD)</option> 
+                                <option value="MD">Doctor of Medicine (MD)</option>
+                                <option value="DO">Doctor of Osteopathic Medicine (DO)</option>
+                            </select>
+                            <div class="qualifications error"></div>
+                        </div>
+
+                        <div class=" border-red-500 my-1 p-2 bg-white flex">
+                            <label for="experience">Experience:</label>
+                            <input type="text" name="experience" id="experience" required placeholder="10years" class="rounded-lg w-3/4 h-8 mx-auto border">
+                            <div class="experience error"></div>
+                        </div>
+
+                        <div class=" border-red-500 rounded-b-md my-1 p-2 bg-white flex">
+                            <label for="contactInformation">Contact Information:</label>
+                            <input type="text" name="contactInformation" id="contactInformation" required class="rounded-lg w-3/4 h-8 mx-auto border">
+                            <div class="contactInformation error"></div>
+                        </div>
+
+                        <div class="justify-self-end mt-2 w-fit border-red-500 bg-blue-700 px-2 py-1 rounded-md shadow-lg">
+                            <input type="submit" value="Create Account" class="text-white">
+                            <i class='fas fa-sign-in-alt text-white' ></i>
+                        </div>
+
+                        <div class="text-sm mt-5 border-red-500">
+                            <p> Already a user? <a href='/loginDoctor' class="text-blue-600">Log into account.</a></p>
+
+                        </div>
+                    </form>
+
+                </fieldset>
+            </div>
+        </div>
+    </div>
+
+    
+    <%- include('./partials/footer.ejs') %>
+
+
+
+    <script>
+        //error messages in div tags
+        const form = document.querySelector('form')
+        const emailError = document.querySelector('.email')
+        const passwordError = document.querySelector('.password')
+        const nameError = document.querySelector('.name')
+        const specialtiesError = document.querySelector('.specialties')
+        const qualificationsError = document.querySelector('.qualifications')
+        const experienceError = document.querySelector('.experience')
+        const contactInformationError = document.querySelector('.contactInformation')
+
+        form.role.value = 'doctor'
+
+
+        form.addEventListener('submit', async (e)=>{
+            e.preventDefault();
+        
+            //reset errors
+            emailError.textContent = ''
+            passwordError.textContent = ''
+            nameError.textContent = ''
+            specialtiesError.textContent = ''
+            qualificationsError.textContent = ''
+            experienceError.textContent = ''
+            contactInformationError.textContent = ''
+
+
+            const name = form.name.value;
+            const email = form.email.value;
+            const role = form.role.value;
+            const password = form.password.value;
+            const specialties = form.specialties.value;
+            const qualifications = form.qualifications.value;
+            const experience = form.experience.value;
+            const contactInformation = form.contactInformation.value;
+
+            try{
+                const res = await fetch('/signUpDoctor', {
+                    method:'POST',
+                    body:JSON.stringify({
+                        name,
+                        email,
+                        role:'doctor',
+                        password,
+                        specialties,
+                        qualifications,
+                        experience,
+                        contactInformation
+                    }),
+                    headers:{'Content-Type': 'application/json'}
+                });
+
+                const data = await res.json();
+                console.log(data)
+
+                if(data.errors){
+                   emailError.textContent = data.errors.email;
+                   passwordError.textContent = data.errors.password;
+                   nameError.textContent = data.errors.name;
+                   specialtiesError.textContent = data.errors.specialties;
+                   qualificationsError.textContent = data.errors.qualifications;
+                   experienceError.textContent = data.errors.experience;
+
+                }
+                // direct home if user is created
+                if(data.doctor){
+                    location.assign('/doctors')
+                }
+            }catch(err){
+                console.log(err)
+            }
+        })
+    </script>
+</body>
+</html>

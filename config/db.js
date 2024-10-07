@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const connectDB = async () => {
   try {
-    await mongoose.connect('mongodb://localhost:27017/hospitalDb', {
+    await mongoose.connect('mongodb+srv://Twain:1234@nodetuts.08tzqrn.mongodb.net/HealthCare?retryWrites=true&w=majority&appName=HealthCenter', {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });

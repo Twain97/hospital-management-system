@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('./partials/head.ejs') %>
+<body>
+    <%- include('./partials/nav.ejs') %>
+<div class="flex flex-col h-fit rounded-xl my-5 py-10  mx-auto pb-2 w-fit md:w-wd7 lg:w-wd8 xl:w-wd45 bg-slate-100 shadow-sm">
+            
+    <div class="flex  flex-col z-50 my-auto  md:py-2 w-full h-full border-blue-500">
+    <div class="w-full h-full py-2 flex flex-col px-2  border-red-500 mx-auto space-y-10">
+        <div class="w-full   space-y-2 flex flex-col  border-green-500">
+        <h2 class="text-slate-800 mx-auto font-bold text-lg md:text-2xl uppercase">Doctors.</h2>
+        
+        <table class="">
+        <tr class="border-black rounded-t-xl border-2 md:border-4 font-bold text-center text-sm md:text-lg uppercase">
+           
+            <% if (doctors.length > 0) { %>
+                    <td>#</td>
+                    <td>Doctor Name</td>
+                    <td>Specialties</td>
+                    <td>Qualifications</td>
+                    <td>Experience</td>
+                    <td>Contact Information</td>
+                </tr>
+
+                <% var index = 1 %>
+                <% doctors.forEach(doctor => {%>
+                    <tr>
+                        <td class="border-black border-2 md:border-4 w-fit uppercase p-1"><%= index %></td>
+                        <td class="border-black border-2 md:border-4 w-fit uppercase p-1"><%= doctor.name %></td>
+                        <td class="border-black border-2 md:border-4 w-fit uppercase p-1"><%= doctor.specialties %></td>
+                        <td class="border-black border-2 md:border-4 w-fit uppercase p-1"><%= doctor.qualifications %></td>
+                        <td class="border-black border-2 md:border-4 w-fit uppercase p-1"><%= doctor.experience %></td>
+                        <td class="border-black border-2 md:border-4 w-fit uppercase p-1"><%= doctor.contactInformation %></td>
+                    </tr>
+                    <% index++; %>
+                <% }); %>
+            <% } else{ %>
+                <p>no doctor</p>
+            <% } %>
+    </table>
+    </div>
+ 
+        <div class="w-full   space-y-2 flex flex-col  border-green-500 ">
+            <h2 class="text-slate-800 mx-auto font-bold text-lg md:text-2xl uppercase">Patients.</h2>
+            <table class="">
+                <tr class="border-black rounded-t-xl border-2 md:border-4 font-bold text-center text-sm md:text-lg uppercase">
+                    <% if (patients.length > 0) { %> %>
+                        <td>#</td>
+                        <td>Patient Name</td>
+                        <td>Age</td>
+                        <td>Gender</td>
+                        <td >Contact Information</td>
+                        <td>Medical History</td>
+                        <td>Insurance Details</td>
+                </tr>
+                    <% var index = 1 %>
+                            <% patients.forEach(patient =>{ %>
+                                <tr>
+                                    <td class="border-black border-2 md:border-4 w-fit uppercase p-1"><%= index++ %></td>
+                                    <td class="border-black border-2 md:border-4 w-fit uppercase p-1"><%= patient.name %></td>
+                                    <td class="border-black border-2 md:border-4 w-fit uppercase p-1"><%= patient.age %></td>
+                                    <td class="border-black border-2 md:border-4 w-fit uppercase p-1"><%= patient.gender %></td>
+                                    <td class="border-black border-2 md:border-4 w-fit uppercase p-1"><%= patient.contactInformation %></td>
+                                    <td class="border-black border-2 md:border-4 w-fit uppercase p-1"><%= patient.medicalHistory %></td>
+                                    <td class="border-black border-2 md:border-4 w-fit uppercase p-1"><%= patient.insuranceDetails %></td>
+                                </tr>
+                                <% index++; %>
+                            <%}) %>
+                        
+                    <% } else{ %>
+                        <p>no patient</p>
+                    <% } %> %>
+                </tr>
+            </table>
+        </div>    
+    
+        <div class="w-full   space-y-2 flex flex-col ">
+            <h2 class="text-slate-800 mx-auto font-bold text-lg md:text-2xl uppercase">Appointments.</h2>
+            <table class="">
+                <tr class="border-black rounded-t-xl border-2 md:border-4 font-bold text-center text-sm md:text-lg uppercase">
+                <% if (user && appointments) { %>
+                    <% if (appointments.length > 0 ) { %>
+                        <td>#</td>
+                        <td class="hidden">Appointment ID</td>
+                        <td>Patient's Name</td>
+                        <td>Selected Doctor</td>
+                        <td>Specialization</td>
+                        <td>Appointment Date</td>
+                        <td>Appointment Time</td>
+                        <td>Appointment Creation Date</td>
+                        <td>Appointment Status</td>
+                        <td>Action</td>
+                </tr>
+                <% var index = 1 %>
+                <% appointments.forEach(appointment => { %>
+                    <% var createdAt = new Date(appointment.createdAt) %>
+                    <% var createdDate = createdAt.toLocaleDateString('en-US') %>
+                    
+                       <tr>
+                        <form>
+                            <td class="border-black border-2 md:border-4 w-fit uppercase p-1"><%= index %></td>
+                            <td class="hidden border-black border-2 md:border-4 w-fit uppercase p-1"><%= appointment._id %></td>
+                            <td class="border-black border-2 md:border-4 w-fit uppercase p-1"><%= appointment.name %></td>
+                            <td class="border-black border-2 md:border-4 w-fit uppercase p-1"><%= appointment.selectDoctor %></td>
+                            <td class="border-black border-2 md:border-4 w-fit uppercase p-1"><%= appointment.doctorSpecialties%></td>
+                            <td class="border-black border-2 md:border-4 w-fit uppercase p-1"><%= appointment.Date %></td>
+                            <td class="border-black border-2 md:border-4 w-fit uppercase p-1"><%= appointment.Time %></td>
+                            <td class="border-black border-2 md:border-4 w-fit uppercase p-1"><%= createdDate %></td>
+                            <td class="border-black border-2 md:border-4 w-fit uppercase p-1">
+                                <select name="status" id="status">
+                                    <option value="<%= appointment.status %>"> <%= appointment.status %></option>
+                                    <% if (appointment.status === 'pending') { %>
+                                        <option value="confirmed">Confirmed</option>
+                                        <option value="canceled">Canceled</option>
+                                    <% } else if (appointment.status === 'confirmed') { %>
+                                        <option value="pending">Pending</option>
+                                        <option value="canceled">Canceled</option>
+                                    <% } %>
+                                     
+                                    
+                                </select>
+                            </td>
+                            <td class="border-black border-2 md:border-4 w-fit uppercase p-1">
+                                <input type="submit" value="Submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"">
+                            </td>
+                        </form>
+                    </tr>
+                    <% index++; %>
+                <% }) %>
+            <% } else{ %>
+                <p>no doctor</p>
+            <% } %>
+        </table>
+        <% } %>
+    </div>
+</div>
+</div>
+</div>
+
+    <%- include('./partials/footer.ejs') %>
+
+    <script>
+        const forms = document.querySelectorAll('form'); // Select all forms
+
+forms.forEach(form => {
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault(); // Prevent default form submission
+
+        try{
+            // Get the row containing the submitted form
+             const row = e.target.closest('tr'); 
+
+            // Assuming the appointment ID is in the second <td> (index 1)
+            const id = row.querySelectorAll('td')[1].textContent;
+            const name = row.querySelectorAll('td')[2].textContent;
+            
+            const status = row.querySelector('select').value
+            const selectDoctor = row.querySelectorAll('td')[3].textContent;
+            const doctorSpecialties = row.querySelectorAll('td')[4].textContent;
+            const Date = row.querySelectorAll('td')[5].textContent;
+            const Time = row.querySelectorAll('td')[6].textContent;
+
+            console.log("Appointment ID:", id,'\n', "Status:", status, '\n', "selectDoctor:", selectDoctor, '\n', "doctorSpecialties:", doctorSpecialties, '\n', "Date:", Date, '\n', "Time:", Time); 
+            const res = await fetch('/appointments', {
+                method:'PUT',
+                body:JSON.stringify({
+                    id, 
+                    status,
+                    selectDoctor,
+                    doctorSpecialties,
+                    Date,
+                    Time
+                }),
+                headers:{'Content-Type': 'application/json'
+                }
+            })
+
+            const data = await res.json();
+
+            alert('Status updated!')
+        }catch(err){
+            console.log(err)
+        }
+        
+    });
+});
+    </script>
+</body>
+</html>

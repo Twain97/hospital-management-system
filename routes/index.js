@@ -4,7 +4,9 @@ const router = express.Router();
 // Index route
 router.get('/', (req, res) => {
   // Handle the index route logic here
-  res.send('Welcome to the index page');
+  res.render('index', {
+    title:"HOME"
+  })
 });
 
 // Export the router

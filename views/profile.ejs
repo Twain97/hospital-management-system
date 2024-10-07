@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('./partials/head.ejs') %>
+<body>
+    <%- include('./partials/nav.ejs') %>
+    <div class="w-full h-fit  border-green-500 flex">
+        <div class="md:w-2/4 bg-slate-200 px-4 py-5 border-red-300 my-5 mx-auto rounded-lg shadow-lg">
+            <div class="text-xl flex space-x-1">
+                <img src="/logo.png" alt="" class="w-8">
+                <h1> HMS | User Profile.</h1>
+            </div>
+            <div class="text-base mt-5 px-10 flex flex-col space-y-6">
+                <% if (user.role == 'patient') { %>
+                <p>Full Name:<span class="ml-2 font-bold text-lg"><%= user.name %></span></p>
+                <p>Email:<span class="ml-2 font-bold text-lg"><%= user.email %></span></p>
+                <p>Age:<span class="ml-2 font-bold text-lg"><%= user.age %></span> years.</p>
+                <p>Gender:<span class="ml-2 font-bold text-lg"><%= user.gender %></span></p>
+                <p>Contact Information:<span class="ml-2 font-bold text-lg"><%= user.contactInformation %></span></p>
+                <p>Medical History:<span class="ml-2 font-bold text-lg"><%= user.medicalHistory %></span></p>
+                <p>Insurance Details:<span class="ml-2 font-bold text-lg"><%= user.insuranceDetails %></span></p>
+
+
+                <div class="justify-self-end w-fit border-red-500 bg-blue-700 px-2 py-1 rounded-md shadow-lg">
+                            <a href="/patients" class="text-white">Go Back</a>
+                </div>
+
+                <% } else if (user.role == 'doctor') { %>
+                    <p>Full Name:<span class="ml-2 font-bold text-lg"><%= user.name %></span></p>
+                    <p>Email:<span class="ml-2 font-bold text-lg"><%= user.email %></span></p>
+                    <p>Specialty:<span class="ml-2 font-bold text-lg"><%= user.specialties %></span></p>
+                    <p>Qualification:<span class="ml-2 font-bold text-lg"><%= user.qualifications %></span></p>
+                    <p>Experience:<span class="ml-2 font-bold text-lg"><%= user.experience %></span></p>
+                    <p>Contact Information:<span class="ml-2 font-bold text-lg"><%= user.contactInformation %></span></p>
+                    
+
+
+                    <div class="justify-self-end w-fit border-red-500 bg-blue-700 px-2 py-1 rounded-md shadow-lg">
+                                <a href="/doctors" class="text-white">Go Back</a>
+                    </div>
+
+
+                <% } else { %>
+                 <p>No user found. Please login!</p>
+                <% } %>
+                
+
+            </div>
+        </div>
+    </div>
+
+
+    <%- include('./partials/footer.ejs') %>
+</body>
+</html>

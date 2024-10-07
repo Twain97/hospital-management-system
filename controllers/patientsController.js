@@ -1,15 +1,15 @@
 const Patient = require('../models/patient');
 
 // Controller method for fetching all patients
-exports.getAllPatients = (req, res) => {
-  Patient.find({})
-    .then(patients => {
-      res.json(patients);
-    })
-    .catch(err => {
-      console.error(err);
-      res.status(500).send('An error occurred');
-    });
+exports.getAllPatients = async (req, res) => {
+  try{
+    const patient = await Patient.find({})
+    return patient
+  }catch (err)  {
+    console.error(err);
+    res.status(500).send('An error occurred');
+  };
+    
 };
 
 // Controller method for fetching a single patient by ID
@@ -35,6 +35,7 @@ exports.createPatient = (req, res) => {
 
   const newPatient = new Patient({
     name,
+    email,
     age,
     gender,
     contactInformation,
@@ -45,6 +46,7 @@ exports.createPatient = (req, res) => {
   newPatient.save()
     .then(patient => {
       res.status(201).json(patient);
+      console.log("Patients record created successfully")
     })
     .catch(err => {
       console.error(err);

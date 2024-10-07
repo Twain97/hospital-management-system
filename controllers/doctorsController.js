@@ -1,16 +1,16 @@
 const Doctor = require('../models/doctor');
 
 // Controller method for fetching all doctors
-exports.getAllDoctors = (req, res) => {
-  Doctor.find({})
-    .then(doctors => {
-      res.json(doctors);
-    })
-    .catch(err => {
-      console.error(err);
-      res.status(500).send('An error occurred');
-    });
+exports.getAllDoctors = async (req, res) => {
+  try {
+    const doctors = await Doctor.find({});
+    return doctors;
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('An error occurred');
+  }
 };
+
 
 // Controller method for fetching a single doctor by ID
 exports.getDoctorById = (req, res) => {
@@ -31,10 +31,12 @@ exports.getDoctorById = (req, res) => {
 
 // Controller method for creating a new doctor
 exports.createDoctor = (req, res) => {
-  const { name, specialties, qualifications, experience, contactInformation } = req.body;
+  const { name, email, password, specialties, qualifications, experience, contactInformation } = req.body;
 
   const newDoctor = new Doctor({
     name,
+    email,
+    password,
     specialties,
     qualifications,
     experience,
@@ -44,6 +46,7 @@ exports.createDoctor = (req, res) => {
   newDoctor.save()
     .then(doctor => {
       res.status(201).json(doctor);
+      console.log("Doctor account created successfully")
     })
     .catch(err => {
       console.error(err);

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('./partials/head.ejs') %>
+<body>
+    <%- include('./partials/nav.ejs') %>
+<div class="w-full h-fit  border-green-500 flex">
+    <div class="md:w-2/4 bg-slate-200 px-4 py-5 border-red-300 my-5 mx-auto rounded-lg shadow-lg">
+        <div class="text-xl flex space-x-1">
+            <img src="/logo.png" alt="" class="w-8">
+            <h1> HMS | Book Appointment.</h1>
+        </div>
+        <div class="">
+            <fieldset class="border border-slate-500 p-5 rounded-lg">
+                <legend class="ml-2 text-blue-500 font-semibold">Create your account.</legend>
+                <form>
+                    <p class="mb-2 text-sm">Please enter your details to create account.</p>
+                
+                    <div class=" border-red-500 my-1 p-2 w-full bg-white rounded-t-md flex">
+                        <label for="doctor specialties">Doctor's Specialists</label>
+                        <select name="doctorSpecialties" id="doctorSpecialties" required class="rounded-lg w-3/4 h-8 mx-auto border">
+                            <% if(doctors.length > 0){%>
+                                <% doctors.forEach(doctor => { %>
+                                <option value="<%= doctor.specialties %>"><%= doctor.specialties %></option>
+                                <% }) %>
+                            <%}else{%>
+                                <option value="NoDoctor">No Doctor.</option>
+                            <%}%>
+                        </select>
+                    </div>
+
+                    <div class=" border-red-500 my-1 p-2 w-full bg-white flex">
+                        
+                        <label for="selectDoctor">Select Doctor:</label>
+                        <select name="selectDoctor" id="selectDoctor" required class="rounded-lg w-3/4 h-8 mx-auto border">
+                            <% if(doctors.length > 0){%>
+                                <% doctors.forEach(doctor => { %>
+                                <option value="<%= doctor.name %>"><%= doctor.name%></option>
+                                <% }) %>
+                            <%}else{%>
+                                <option value="NoDoctor">No Doctor.</option>
+                            <%}%>
+                        </select>
+                    </div>
+
+                    <div class=" border-red-500 my-1 p-2 w-full bg-white flex">
+                        <label for="date">Date:</label>
+                        <input type="date" name="date" id="date" required class="rounded-lg w-3/4 h-8 mx-auto border">
+                        <div class="date error"></div>
+                    </div>
+
+                    <div class=" border-red-500 my-1 p-2 w-full bg-white  flex">
+                        <label for="time">Time:</label>
+                        <input type="time" name="time" id="time" required class="rounded-lg w-3/4 h-8 mx-auto border">
+                        <div class="time error"></div>
+                    </div>
+
+                    <div class=" border-red-500 my-1 p-2 w-full rounded-b-md bg-white flex">
+                        <label for="name">Your Name:</label>
+                        <input type="text" name="name" id="name" value="<%= user.name %>" required class="rounded-lg w-3/4 h-8 mx-auto border" >
+                        <div class="name error"></div>
+                    </div>
+
+                    <div class="justify-self-end mt-5 w-fit border-red-500 bg-blue-700 px-2 py-1 rounded-md shadow-lg">
+                        <input type="submit" value="Book Appointment" class="text-white">
+                        <i class='fas fa-sign-in-alt text-white' ></i>
+                    </div>
+                </form>
+            </fieldset>
+        </div>
+    </div>
+</div>  
+    
+    <%- include('./partials/footer.ejs') %>
+
+
+
+    <script>
+        //error messages in div tags
+        const form = document.querySelector('form')
+
+
+        form.addEventListener('submit', async (e)=>{
+            e.preventDefault();
+        
+
+            const name = form.name.value;
+            const doctorSpecialties = form.doctorSpecialties.value;
+            const selectDoctor = form.selectDoctor.value;
+            const Date = form.date.value;
+            const Time = form.time.value;
+            try{
+                const res = await fetch('/appointments', {
+                    method:'POST',
+                    body:JSON.stringify({
+                        name,
+                        doctorSpecialties,
+                        selectDoctor,
+                        Date,
+                        Time, 
+                        status:'pending'
+                    }),
+                    headers:{'Content-Type': 'application/json'}
+                });
+
+                const data = await res.json();
+
+                alert('Appointment Created!')
+
+                // direct home if appointment is created
+                if(data.appointment){
+                    location.assign('/patients')
+                }
+            }catch(err){
+                console.log(err)
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,17 +1,14 @@
 const Appointment = require('../models/appointment');
 
 // Controller method for fetching all appointments
-exports.getAllAppointments = (req, res) => {
-  Appointment.find({})
-    .populate('doctor')
-    .populate('patient')
-    .then(appointments => {
-      res.json(appointments);
-    })
-    .catch(err => {
+exports.getAllAppointments = async (req, res) => {
+    try{
+      const appointments = await Appointment.find({}) 
+      return appointments
+    }catch(err) {
       console.error(err);
       res.status(500).send('An error occurred');
-    });
+    };
 };
 
 // Controller method for fetching a single appointment by ID
@@ -34,47 +31,41 @@ exports.getAppointmentById = (req, res) => {
 };
 
 // Controller method for creating a new appointment
-exports.createAppointment = (req, res) => {
-  const { doctor, patient, appointmentDateTime, status } = req.body;
+exports.createAppointment = async (req, res) => {
+  const { doctorSpecialties, selectDoctor, name, Date, Time, status } = req.body;
 
-  const newAppointment = new Appointment({
-    doctor,
-    patient,
-    appointmentDateTime,
-    status
-  });
-
-  newAppointment.save()
-    .then(appointment => {
-      res.status(201).json(appointment);
-    })
-    .catch(err => {
+  try{
+    const appointment = await Appointment.create( { doctorSpecialties, selectDoctor, name, Date, Time, status })
+    
+    res.status(201).json({appointment: appointment._id})
+  }catch (err) {
       console.error(err);
       res.status(500).send('An error occurred');
-    });
+  };
 };
 
 // Controller method for updating an appointment
-exports.updateAppointment = (req, res) => {
-  const { id } = req.params;
-  const { doctor, patient, appointmentDateTime, status } = req.body;
+exports.updateAppointment = async (req, res) => {
+  const { id, status, selectDoctor, doctorSpecialties, Date, Time } = req.body; // Get all fields from body
 
-  Appointment.findByIdAndUpdate(id, {
-    doctor,
-    patient,
-    appointmentDateTime,
-    status
-  }, { new: true })
-    .then(appointment => {
-      if (!appointment) {
-        return res.status(404).json({ message: 'Appointment not found' });
-      }
-      res.json(appointment);
-    })
-    .catch(err => {
+  try{
+    const appointment = await Appointment.findByIdAndUpdate(id, {
+      status,
+      selectDoctor,
+      doctorSpecialties,
+      Date,
+      Time 
+    }, { new: true }); // Update the appointment with new values
+
+    if (!appointment) {
+      return res.status(404).json({ message: 'Appointment not found' });
+    }
+
+    res.json(appointment); // Send back the updated appointment
+  } catch(err) {
       console.error(err);
       res.status(500).send('An error occurred');
-    });
+  };
 };
 
 // Controller method for deleting an appointment
