@@ -6,6 +6,7 @@ const cookieParser = require('cookie-parser');
 const {requireAuth, checkUser, routeGuide} = require('./middlware/authMiddleware')
 
 
+
 // Set up middleware
 app.use(express.json());
 app.use(morgan('dev'))
