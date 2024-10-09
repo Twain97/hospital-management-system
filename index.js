@@ -4,6 +4,7 @@ const app = express();
 const connectDB = require('./config/db'); 
 const cookieParser = require('cookie-parser');
 const {requireAuth, checkUser, routeGuide} = require('./middlware/authMiddleware')
+const path = require('path');
 
 
 
@@ -11,7 +12,7 @@ const {requireAuth, checkUser, routeGuide} = require('./middlware/authMiddleware
 app.use(express.json());
 app.use(morgan('dev'))
 app.set('view engine', 'ejs');
-app.use(express.static('public'));
+app.use(express.static(path.join(__dirname + 'public')));
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(routeGuide)
