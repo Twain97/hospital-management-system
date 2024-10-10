@@ -1,15 +1,5 @@
 {
-    "build": {
-            "command": "vite build"
-            },
-    "routes": [
-  {
-    "src": "/(.*)",
-    "dest": "/index.html"
-  }
-],
-    "rewrites": [
-        { "source": "/(.*)", "destination": "/index.html" }
-        ],
-    "framework": "vue"
+    "version":2,
+    "builds":[{"src": "index.js", "use": "@vercel/node"}],
+    "routes":[{"src": "/(.*)", "dest": "/"}]
 }
